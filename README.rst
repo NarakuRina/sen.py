@@ -1,79 +1,53 @@
 ==============================
-The Ren'Py Visual Novel Engine
+Sen'Py Visual Novel Engine
 ==============================
 
-https://www.renpy.org
+https://www.rina.work/project/senpy
 
-Ren'Py development takes place on the ``master`` branch, and occasionally
-on feature branches.
+Sen'Py được phát triển dựa trên Ren'Py.
 
 
-Getting Started
+Bắt Đầu
 ===============
 
-Ren'Py depends on a number of Python modules written in Cython and C. For
-changes to Ren'Py that only involve Python modules, you can use the modules
-found in the latest nightly build. Otherwise, you'll have to compile the
-modules yourself.
+Ren'Py ()nền gốc của Sen'Py) dựa trên một số mô-đun Python được viết bằng Cython và C. Với những thay đổi đối với Ren'Py mà chỉ liên quan đến các mô-đun Python, bạn có thể sử dụng những mô-đun tại bản nightly build mới nhất. Nếu không, bạn sẽ phải tự compile các mô-đun này.
 
-The development scripts assume a POSIX-like platform. The scripts should run
-on Linux or macOS, and can be made to run on Windows using an environment
-like MSYS.
+Các development script được mặc định một nền tảng giống như POSIX. Các tập lệnh sẽ chạy
+trên linux hay macOS, và có thể chạy được trên Windows bằng cách sử dụng các environment ví dụ như là MSYS.
 
 Nightly Build
 -------------
 
-Nightly builds can be downloaded from:
-
-   https://nightly.renpy.org
-
-Note that the latest nightly build is at the bottom of the list. Once you've
-unpacked the nightly, change into this repository, and run::
-
-    ./after_checkout.sh <path-to-nightly>
-
-Once this script completes, you should be able to run Ren'Py using renpy.sh,
-renpy.app, or renpy.exe, as appropriate for your platform.
-
-If the current nightly build doesn't work, please wait 24 hours for a new
-build to occur. If that build still doesn't work, contact Tom (`pytom at bishoujo.us`,
-or @renpytom on twitter) to find out what's wrong.
-
-The ``doc`` symlink will dangle until documentation is built, as described
-below.
+Bản nightly build chỉ có ở bản gốc Ren'Py, bản fork Sen'Py không hỗ trợ.
 
 Compiling the Modules
 ----------------------
 
-Building the modules requires you have the many dependencies installed on
-your system. On Ubuntu and Debian, these dependencies can be installed with
-the command::
+Xây dựng các mô-đun yêu cầu bạn đã cài đặt nhiều dependencies trên hệ thống của bạn. Đối với Ubuntu và Debian, những dependencies này có thể được cài đặt với lệnh::
 
     sudo apt install virtualenvwrapper python3-dev libavcodec-dev libavformat-dev \
         libswresample-dev libswscale-dev libharfbuzz-dev libfreetype6-dev libfribidi-dev libsdl2-dev \
         libsdl2-image-dev libsdl2-gfx-dev libsdl2-mixer-dev libsdl2-ttf-dev libjpeg-dev
 
-Ren'Py requires SDL_image 2.6 or greater. If your distribution doesn't include
-that version, you'll need to download it from:
+Sen'Py cần có SDL_image phiên bản 2.6 trở lên. Nếu distribution bạn đang sử dụng không bao gồm mô-đun này, bạn sẽ cần phải tải nó tại:
 
     https://github.com/libsdl-org/SDL_image/tree/SDL2
 
-We strongly suggest installing the Ren'Py modules into a Python
-virtualenv. To create a new virtualenv, open a new terminal and run::
+Bạn nên cài đặt các mô-đun Sen'Py vào Python virtualenv. Để tạo một virtualenv mới, hãy mở một terminal mới và dùng lệnh::
 
     . /usr/share/virtualenvwrapper/virtualenvwrapper.sh
     mkvirtualenv renpy
 
-To return to this virtualenv later, run::
+Để trở lại VirtualEnv này vào lần tới, gỗ::
 
     . /usr/share/virtualenvwrapper/virtualenvwrapper.sh
     workon renpy
 
-After activating the virtualenv, install additional dependencies::
+Sau khi kích hoạt virtualenv, cài đặt các dependencies bổ sung::
 
     pip install -U cython future six typing pefile requests ecdsa
 
-Then, install pygame_sdl2 by running the following commands::
+Sau đó, cài đặt pygame_sdl2 bằng cách dùng lệnh::
 
     git clone https://www.github.com/renpy/pygame_sdl2
     pushd pygame_sdl2
@@ -81,30 +55,26 @@ Then, install pygame_sdl2 by running the following commands::
     python setup.py install_headers
     popd
 
-Next, set RENPY_DEPS_INSTALL To a \:-separated (\;-separated on Windows)
-list of paths containing the dependencies, and RENPY_CYTHON to the name
-of the cython command::
+Tiếp theo, đặt RENPY_DEPS_INSTALL thành \:-separated (\;-separated cho Windows) danh sách các đường dẫn chứa các dependencies, và RENPY_CYTHON qua tên của lệnh cython sau::
 
     export RENPY_DEPS_INSTALL="/usr:/usr/lib/$(gcc -dumpmachine)/"
     export RENPY_CYTHON=cython
 
-Finally, use setup.py in the Ren'Py ``module`` directory to compile and
-install the modules that support Ren'Py::
+Cuối cùng, chạy setup.py trong thư mục ``module`` của Sen'Py để compile và cài đặt các mô-đun hỗ trợ Sen'Py::
 
     pushd module
     python setup.py install
     popd
 
-Ren'Py will be installed into the activated virtualenv. It can then be run
-using the command::
+Sen'Py sẽ được cài đặt trên virtualenv đang chạy. Nó có thể được chạy bằng lệnh::
 
     python renpy.py
 
 
-Documentation
+Tài liệu
 =============
 
-Building
+Build
 --------
 
 Building the documentation requires Ren'Py to work. You'll either need to
