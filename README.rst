@@ -10,7 +10,7 @@ Sen'Py được phát triển dựa trên Ren'Py.
 Bắt Đầu
 ===============
 
-Ren'Py ()nền gốc của Sen'Py) dựa trên một số mô-đun Python được viết bằng Cython và C. Với những thay đổi đối với Ren'Py mà chỉ liên quan đến các mô-đun Python, bạn có thể sử dụng những mô-đun tại bản nightly build mới nhất. Nếu không, bạn sẽ phải tự compile các mô-đun này.
+Ren'Py (bản gốc của Sen'Py) dựa trên một số mô-đun Python được viết bằng Cython và C. Với những thay đổi đối với Ren'Py mà chỉ liên quan đến các mô-đun Python, bạn có thể sử dụng những mô-đun tại bản nightly build mới nhất. Nếu không, bạn sẽ phải tự compile các mô-đun này.
 
 Các development script được mặc định một nền tảng giống như POSIX. Các tập lệnh sẽ chạy
 trên linux hay macOS, và có thể chạy được trên Windows bằng cách sử dụng các environment ví dụ như là MSYS.
@@ -77,32 +77,24 @@ Tài liệu
 Build
 --------
 
-Building the documentation requires Ren'Py to work. You'll either need to
-link in a nightly build, or compile the modules as described above. You'll
-also need the `Sphinx <https://www.sphinx-doc.org>`_ documentation generator.
-If you have pip working, install Sphinx using::
+Build một bản tài liệu cần có Sen'Py để hoạt động. Bạn sẽ hoặc là cần một bản nightly build, hoặc cần complie các mô-đun được kể ở phía trên. Bạn cũng sẽ cần trình khởi tạo bản tài liệu cho `Sphinx <https://www.sphinx-doc.org>`_.
+Nếu bạn có pip hoạt động, cài đặt Sphinx bằng lệnh::
 
     pip install -U sphinx sphinx_rtd_theme sphinx_rtd_dark_mode
 
-Once Sphinx is installed, change into the ``sphinx`` directory inside the
-Ren'Py checkout and run::
+Sau khi mà Sphinx được cài đặt, chuyển vào thư mục ``sphinx`` bên trong Sen'Py và chạy::
 
     ./build.sh
 
 Format
 ------
 
-Ren'Py's documentation consists of reStructuredText files found in sphinx/source, and
-generated documentation found in function docstrings scattered throughout the code. Do
-not edit the files in sphinx/source/inc directly, as they will be overwritten.
+Bản tài liệu của Sen'Py bao gồm các tệp reStructuredText được tìm thấy tại sphinx/source, và các bản tài liệu đã được khởi tạo được tìm thấy tại các function docstring rải rác trong code. Không chỉnh sửa trực tiếp các tệp trong thư mục sphinx/source/inc, do chúng sẽ bị ghi đè.
 
-Docstrings may include tags on the first few lines:
+Docstring có thể sẽ bao gồm các nhãn trong những dòng đầu:
 
 \:doc: `section` `kind`
-    Indicates that this function should be documented. `section` gives
-    the name of the include file the function will be documented in, while
-    `kind` indicates the kind of object to be documented (one of ``function``,
-    ``method`` or ``class``. If omitted, `kind` will be auto-detected.
+    Đánh dấu rằng function này cần được ghi lại. `section` cho biết tên của tệp được bao gồm mà function sẽ được ghi lại, trong khi `kind` đánh dấu loại object để được ghi lại (một trong số ``function``, ``method`` hoặc ``class``. Nếu bị bỏ qua, `kind` sẽ được tự động phát hiện.
 \:name: `name`
     The name of the function to be documented. Function names are usually
     detected, so this is only necessary when a function has multiple aliases.
